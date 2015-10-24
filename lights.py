@@ -46,10 +46,13 @@ def randomColors():
       data[2+j] += random.randint(0,15)
     setLight(*data)
 
-anim = Animation([Frame([Segment(range(i%3, 50, 3), 0xFF0000),
-                        Segment(range((i+1)%3, 50, 3), 0xFF7F00),
-                         Segment(range((i+2)%3, 50, 3), 0x7500B0)],
-                        duration=.3) for i in range(3)]).render()
+# returns a list of segments
+def color_wheel(colors):
+  size = len(colors)
+  return [[Segment(range((i+j)%size, 50, size), colors[j]) for j in range(size)] for i in range(size)]
+
+anim = Animation([Frame(color_wheel([0xFF0000, 0xFF7F00, 0xFFFF00, 0x00FF00, 0x0000FF, 0x7500B0, 0xFF00FF]),
+                        duration=.2)]).render()
 
 while True:
   put_animation(anim, setLight)
