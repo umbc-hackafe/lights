@@ -1,0 +1,11 @@
+[Unit]
+Description=Daemon for controlling lights
+
+[Service]
+Type=simple
+ExecStart=/opt/lights.py
+User=root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
