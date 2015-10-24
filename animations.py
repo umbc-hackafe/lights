@@ -76,7 +76,7 @@ class Segment:
     def __init__(self, lights=ALL_LIGHTS, color=None, brightness=None):
         if isinstance(lights, int):
             lights = [lights]
-        self.lights = lights
+        self.lights = list(lights)
 
         self.__state = {}
 
