@@ -3,6 +3,7 @@ import serial
 import time
 import os
 import random
+from animations import *
 
 devices = os.listdir("/dev/")
 serialDev = None
@@ -45,6 +46,7 @@ def randomColors():
       data[2+j] += random.randint(0,15)
     setLight(*data)
 
+anim = Animation([Frame(BACKGROUND_RED), Frame(BACKGROUND_GREEN), Frame(BACKGROUND_BLUE)]).render()
+
 while True:
-  randomSaturated()
-  fadeInOut(2)
+  put_animation(anim, setLight)
