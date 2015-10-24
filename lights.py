@@ -51,7 +51,7 @@ def color_wheel(colors, duration):
   size = len(colors)
   return Animation([Frame([Segment(range((i+j)%size, 50, size), colors[j]) for j in range(size)], duration=duration) for i in range(size)])
 
-anim = color_wheel(list(reversed([0xFF0000, 0xFF7F00, 0xFFFF00, 0x00FF00, 0x0000FF, 0xFF00FF])), .85).render()
+anim = color_wheel(list(reversed([0xFF0000, 0xFF7F00, 0xFFFF00, 0x00FF00, 0x0000FF, 0xFF00FF])), .085).render()
 
 while True:
   put_animation(anim, setLight)
