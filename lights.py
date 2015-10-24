@@ -46,7 +46,9 @@ def randomColors():
       data[2+j] += random.randint(0,15)
     setLight(*data)
 
-anim = Animation([Frame(BACKGROUND_RED), Frame(BACKGROUND_GREEN), Frame(BACKGROUND_BLUE)]).render()
+anim = Animation([Frame(Segment(range(i%3, 50, 3), 0xFF0000),
+                        Segment(range((i+1)%3, 50, 3), 0xFF7F00),
+                        Segment(range((i+2)%3, 50, 3), 0x7500B0)) for i in range(3)]).render()
 
 while True:
   put_animation(anim, setLight)
