@@ -48,7 +48,8 @@ def randomColors():
 
 anim = Animation([Frame([Segment(range(i%3, 50, 3), 0xFF0000),
                         Segment(range((i+1)%3, 50, 3), 0xFF7F00),
-                         Segment(range((i+2)%3, 50, 3), 0x7500B0)]) for i in range(3)]).render()
+                         Segment(range((i+2)%3, 50, 3), 0x7500B0)],
+                        duration=.3) for i in range(3)]).render()
 
 while True:
   put_animation(anim, setLight)
