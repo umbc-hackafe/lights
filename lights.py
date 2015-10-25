@@ -104,7 +104,7 @@ def add_saved_animation(name, index=None):
 
   return flask.json.jsonify({"status": "success"})
 
-@app.route('/remove_animation/<index>', methods=['POST'])
+@app.route('/remove_animation/<int:index>', methods=['POST'])
 def remove_animation(index):
   with lock:
     if index < 0 or index > len(animations):
