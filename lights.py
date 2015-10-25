@@ -65,7 +65,7 @@ anim = color_wheel(list(reversed([0xFF0000, 0xFF7F00, 0xFFFF00, 0x00FF00, 0x0000
 
 app = flask.Flask(__name__)
 
-@app.route("/add_animation")
+@app.route("/add_animation", methods=['POST'])
 def add_animation(index=None, save=False, name=None):
   global animations
   anim = deserialize(request.get_json())
@@ -81,7 +81,7 @@ def add_animation(index=None, save=False, name=None):
     else:
       animations = animations[:index] + [anim] + animations[index:]
 
-@app.route('/add_saved_animation/<name>')
+@app.route('/add_saved_animation/<name>', methods=['POST'])
 def add_saved_animation(name, index=None):
   global animations
 
@@ -96,7 +96,7 @@ def add_saved_animation(name, index=None):
     else:
       animations = animations[:index] + [anim] + animations[index:]
 
-@app.route('/remove_animation/<index>')
+@app.route('/remove_animation/<index>', methods=['POST'])
 def remove_animation(index):
   with lock:
     if index < 0 or index > len(animations):
