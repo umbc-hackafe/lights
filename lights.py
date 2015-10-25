@@ -85,7 +85,7 @@ def add_animation(index=None, save=False, name=None):
     else:
       animations = animations[:index] + [anim] + animations[index:]
 
-  return {"status": "success"}
+  return flask.json.jsonify({"status": "success"})
 
 @app.route('/add_saved_animation/<name>', methods=['POST'])
 def add_saved_animation(name, index=None):
@@ -102,7 +102,7 @@ def add_saved_animation(name, index=None):
     else:
       animations = animations[:index] + [anim] + animations[index:]
 
-  return {"status": "success"}
+  return flask.json.jsonify({"status": "success"})
 
 @app.route('/remove_animation/<index>', methods=['POST'])
 def remove_animation(index):
@@ -112,7 +112,7 @@ def remove_animation(index):
 
     del animations[index]
 
-  return {"status": "success"}
+  return flask.json.jsonify({"status": "success"})
 
 @app.route('/animations')
 def get_animations():
