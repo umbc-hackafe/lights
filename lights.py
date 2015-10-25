@@ -68,7 +68,11 @@ app = flask.Flask(__name__)
 @app.route("/add_animation", methods=['POST'])
 def add_animation(index=None, save=False, name=None):
   global animations
-  anim = deserialize(request.get_json())
+  data = request.get_json(force=True)
+  if data:
+    anim = deserialize(data)
+  else:
+    raise ValueError("NEED DATA")
 
   if save and name:
     with open(".saved_animations/{}.json".format(name)) as f:
