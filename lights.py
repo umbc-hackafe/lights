@@ -2,7 +2,11 @@
 import serial
 import time
 import os
+import threading
 import random
+import flask
+from flask import request
+import json
 from animations import *
 
 devices = os.listdir("/dev/")
@@ -12,6 +16,12 @@ for i in devices:
     serialDev = os.path.join("/dev/", i)
 print(serialDev)
 serialPort = serial.Serial(serialDev)
+
+DEFAULT_ANIMATION = Animation([Frame([Segment(color=0xFFFFFF), Segment(63, brightness=255)], duration=5)])
+
+lock = threading.Lock()
+animations = []
+saved_animations = {}
 
 def setLight(id, brightness, r, g, b):
   #print(bytes([255, 255, id, brightness, r, g, b]))
@@ -53,5 +63,70 @@ def color_wheel(colors, duration):
 
 anim = color_wheel(list(reversed([0xFF0000, 0xFF7F00, 0xFFFF00, 0x00FF00, 0x0000FF, 0xFF00FF])), .085).render()
 
-while True:
-  put_animation(anim, setLight)
+app = flask.Flask(__name__)
+
+@app.route("/add_animation")
+def add_animation(index=None, save=False, name=None):
+  global animations
+  anim = deserialize(request.get_json())
+
+  if save and name:
+    with open(".saved_animations/{}.json".format(name)) as f:
+      json.dump(anim.serialize(), f)
+      saved_animations[name] = anim
+
+  with lock:
+    if index is None:
+      animations.append(anim)
+    else:
+      animations = animations[:index] + [anim] + animations[index:]
+
+@app.route('/add_saved_animation/<name>')
+def add_saved_animation(name, index=None):
+  global animations
+
+  if name not in saved_animations:
+    raise ValueError("No animation named {} found".format(name))
+
+  anim = saved_animations[name]
+
+  with lock:
+    if index is None:
+      animations.append(anim)
+    else:
+      animations = animations[:index] + [anim] + animations[index:]
+
+@app.route('/remove_animation/<index>')
+def remove_animation(index):
+  with lock:
+    if index < 0 or index > len(animations):
+      raise IndexError("Index must be between 0 and {}".format(len(lock)-1))
+
+    del animations[index]
+
+@app.route('/animations')
+def get_animations():
+  with lock:
+    anims = list(animations)
+
+  return flask.json.jsonify([anim.serialize() for anim in anims])
+
+@app.route('/saved_animations')
+def get_saved_animations():
+  return flask.json.jsonify(list(saved_animations.keys()))
+
+def bg_thread():
+  while True:
+    anims = []
+    with lock:
+      anims = list(animations)
+
+    if anims:
+      for animation in anims:
+        put_animation(animation.render(), setLight)
+    else:
+      put_animation(DEFAULT_ANIMATION.render(), setLight)
+
+threading.Thread(target=bg_thread).start()
+
+app.run('0.0.0.0', port=80, debug=True)
