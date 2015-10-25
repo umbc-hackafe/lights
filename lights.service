@@ -3,7 +3,7 @@ Description=Daemon for controlling lights
 
 [Service]
 Type=simple
-ExecStart=/opt/lights.py
+ExecStart=/opt/lights/lights.py
 User=root
 Restart=always
 
