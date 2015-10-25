@@ -85,6 +85,8 @@ def add_animation(index=None, save=False, name=None):
     else:
       animations = animations[:index] + [anim] + animations[index:]
 
+  return {"status": "success"}
+
 @app.route('/add_saved_animation/<name>', methods=['POST'])
 def add_saved_animation(name, index=None):
   global animations
@@ -100,6 +102,8 @@ def add_saved_animation(name, index=None):
     else:
       animations = animations[:index] + [anim] + animations[index:]
 
+  return {"status": "success"}
+
 @app.route('/remove_animation/<index>', methods=['POST'])
 def remove_animation(index):
   with lock:
@@ -107,6 +111,8 @@ def remove_animation(index):
       raise IndexError("Index must be between 0 and {}".format(len(lock)-1))
 
     del animations[index]
+
+  return {"status": "success"}
 
 @app.route('/animations')
 def get_animations():
