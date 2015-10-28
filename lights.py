@@ -63,7 +63,7 @@ def color_wheel(colors, duration):
 
 anim = color_wheel(list(reversed([0xFF0000, 0xFF7F00, 0xFFFF00, 0x00FF00, 0x0000FF, 0xFF00FF])), .085).render()
 
-app = flask.Flask(__name__, static_url_path='web')
+app = flask.Flask(__name__, static_url_path='/web')
 
 @app.route("/add_animation", methods=['POST'])
 def add_animation(index=None, save=False, name=None):
@@ -127,11 +127,11 @@ def get_saved_animations():
 
 @app.route('/')
 def index():
-  return app.send_static_file('web/index.html')
+  return app.send_static_file('/web/index.html')
 
 @app.route('/web/<path:path>')
 def send_file(path):
-  return flask.send_from_directory('web', path)
+  return flask.send_from_directory('/web', path)
 
 def bg_thread():
   while True:
