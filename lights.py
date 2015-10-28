@@ -127,7 +127,7 @@ def get_saved_animations():
 
 @app.route('/')
 def index():
-  return app.send_static_file('/web/index.html')
+  return app.send_static_file('web/index.html')
 
 @app.route('/web/<path:path>')
 def send_file(path):
