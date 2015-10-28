@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Light Controls</title>
+    <script src="web/jquery.js" type="text/javascript"></script>
+    <script src="web/jquery-ui.js" type="text/javascript"></script>
+    <script src="web/lights.js" type="text/javascript"></script>
+    <link href="web/lights.css" rel="stylesheet" type="text/css"/>
+    <link href="web/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <meta charset="UTF-8"/>
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div id="sidebar">
+	<h3 id="current-animation">Animation D</h3>
+	<form id="sidebar-form">
+	  <div id="sidebar-button-panel">
+	    <input type="button" value="Clear" id="clear-animations"/>
+	    <input type="button" value="Save Animation" id="save-animation"/>
+	    <input type="button" value="Add Frame" id="add-frame"/>
+	  </div>
+	</form>
+	<div id="animation-list">
+	  <ol>
+	    <li>Animation A</li>
+	    <li>Animation B</li>
+	    <li>Animation C</li>
+	  </ol>
+	</div>
+      </div>
+      <div id="animation-editor" data-frames="0" data-animation="0";>
+	<form id="animation-editor-form" action="#" method="post">
+	  <!--<div class="frame-container">
+	    <div class="frame-options">
+	      <span class="frame-number">Frame #1</span> &bull;
+	      <label>Duration: <input type="number" value="1" max="3600" min=".042"/>s</label>
+	    </div>
+	    <div class="frame-segment-list">
+	      <div class="segment-container">
+		<div class="segment-settings">
+		  <input type="color" value="#FFFFFF">
+		  <input class="segment-brightness" type="range" min="0" max="255" value="255"/>
+		  <input type="checkbox"/>
+		</div>
+		<div class="segment-lights">
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label><br/>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		</div>
+	      </div>
+	      <br/>
+	      <div class="segment-container">
+		<div class="segment-settings">
+		  <input type="color" value="#FFFFFF">
+		  <input class="segment-brightness" type="range" min="0" max="255"/>
+		  <input type="checkbox"/>
+		</div>
+		<div class="segment-lights">
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label><br/>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="frame-container">
+	    <div class="frame-options">
+	      <span class="frame-number">Frame #1</span> &bull;
+	      <label>Duration: <input type="number" value="1" max="3600" min=".042"/>s</label>
+	    </div>
+	    <div class="frame-segment-list">
+	      <div class="segment-container">
+		<div class="segment-settings">
+		  <input type="color" value="#FFFFFF">
+		  <input class="segment-brightness" type="range" min="0" max="255" value="255"/>
+		  <input type="checkbox"/>
+		</div>
+		<div class="segment-lights">
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label><br/>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		</div>
+	      </div>
+	      <br/>
+	      <div class="segment-container">
+		<div class="segment-settings">
+		  <input type="color" value="#FFFFFF">
+		  <input class="segment-brightness" type="range" min="0" max="255"/>
+		  <input type="checkbox"/>
+		</div>
+		<div class="segment-lights">
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label><br/>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>1<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		  <label>2<input type="checkbox"/></label>
+		  <label>3<input type="checkbox"/></label>
+		</div>
+	      </div>
+	    </div>
+	  </div>-->
+	</form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+div {
+}
+
+#page-wrapper {
+    width: 100%;
+}
+
+#sidebar {
+    float: left;
+    width: 10%;
+    height: 100%;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+#animation-editor {
+    float: left;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.segment-container {
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+.segment-settings {
+    float: left;
+    clear: left;
+    border-right: 1px solid black;
+}
+
+.segment-lights {
+    float: left;
+    height: 100%;
+    font-family: monospace;
+}
+
+.segment-brightness {
+    width: 60px;
+}
