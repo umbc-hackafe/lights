@@ -172,6 +172,7 @@ function postAnimation() {
 
 function saveAnimation() {
     var name = prompt("Enter a name for this pattern");
+    if (name == "") return;
     $.post("/add_animation?" + $.param({"save": true, "name": name}),
 	   JSON.stringify(serializeAnimation()),
 	   function() {
