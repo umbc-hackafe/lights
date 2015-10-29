@@ -73,13 +73,16 @@ anim = color_wheel(list(reversed([0xFF0000, 0xFF7F00, 0xFFFF00, 0x00FF00, 0x0000
 app = flask.Flask(__name__, static_folder='web')
 
 @app.route("/add_animation", methods=['POST'])
-def add_animation(index=None, save=False, name=None):
+def add_animation(index=None):
   global animations
   data = request.get_json(force=True)
   if data:
     anim = deserialize(data)
   else:
     raise ValueError("NEED DATA")
+
+  save = request.args.get('save')
+  name = request.args.get('name')
 
   if save and name:
     with open(".saved_animations/{}.json".format(name)) as f:
