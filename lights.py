@@ -116,8 +116,9 @@ def remove_animation(index):
 
 @app.route('/clear')
 def clear():
+  global animations
   with lock:
-    anims = []
+    animations = []
 
   return flask.json.jsonify({"status": "success"})
 
