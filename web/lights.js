@@ -194,7 +194,7 @@ function getSavedPosts() {
 	for (var k in data["animations"]) {
 	    $("#animation-list").append(
 		$("<li>").append(
-		    $("<input>").attr('type', 'button').addClass("saved-animation").val(data[k])
+		    $("<input>").attr('type', 'button').addClass("saved-animation").val(data["animations"][k])
 		)
 	    );
 	}
