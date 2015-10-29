@@ -194,7 +194,9 @@ function getSavedPosts() {
 	for (var k in data["animations"]) {
 	    $("#animation-list").append(
 		$("<li>").append(
-		    $("<input>").attr('type', 'button').addClass("saved-animation").val(data["animations"][k])
+		    $("<input>").attr('type', 'button').val(data["animations"][k]).click(function(){
+			postSavedAnimation($(this).val());
+		    })
 		)
 	    );
 	}
@@ -206,9 +208,6 @@ $(function() {
     $("#post-animation").click(function(){postAnimation();});
     $("#save-animation").click(function(){saveAnimation();});
     $("#clear-animations").click(function(){$.get("/clear")});
-    $(".saved-animation").click(function() {
-	postSavedAnimation($(this).val());
-    });
 });
 
 $(function() {
