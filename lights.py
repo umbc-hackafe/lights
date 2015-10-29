@@ -85,7 +85,7 @@ def add_animation(index=None):
   name = request.args.get('name')
 
   if save and name:
-    with open(".saved_animations/{}.json".format(name)) as f:
+    with open(".saved_animations/{}.json".format(name), 'w') as f:
       json.dump(anim.serialize(), f)
       saved_animations[name] = anim
 
