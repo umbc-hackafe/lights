@@ -191,7 +191,7 @@ function postSavedAnimation(name) {
 function getSavedPosts() {
     $("#animation-list").empty();
     $.getJSON("/saved_animations", function(data) {
-	for (var k in data) {
+	for (var k in data["animations"]) {
 	    $("#animation-list").append(
 		$("<li>").append(
 		    $("<input>").attr('type', 'button').addClass("saved-animation").val(data[k])
