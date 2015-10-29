@@ -173,4 +173,5 @@ function saveAnimation() {
 $(function() {
     $("#add-frame").click(function(){addFrame();});
     $("#save-animation").click(function(){saveAnimation();});
+    $("#clear").click(function(){$.get("/clear")});
 });

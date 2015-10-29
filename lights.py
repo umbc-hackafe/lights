@@ -114,6 +114,13 @@ def remove_animation(index):
 
   return flask.json.jsonify({"status": "success"})
 
+@app.route('/clear')
+def clear():
+  with lock:
+    anims = []
+
+  return flask.json.jsonify({"status": "success"})
+
 @app.route('/animations')
 def get_animations():
   with lock:
