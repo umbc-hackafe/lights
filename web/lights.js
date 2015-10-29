@@ -68,7 +68,7 @@ function addFrame() {
 	$("<div>").addClass("frame-container").data("frame", frames+1).append(
 	    $("<div>").addClass("frame-options").data("frame", frames+1).append(
 		$("<input>").attr('type', 'button').data('frame', frames+1).val('X').click(function() {
-		    $(".frame-container:data(frame==" + $(this).data('frame') + ")").remove();
+		    $(".frame-container:data(frame==" + $(this).data('frame') + ")").empty().remove();
 		}),
 		$("<span>").addClass("frame-number").data("frame", frames+1).text("Frame #" + (frames+1)),
 		document.createTextNode("&bull;"),
@@ -107,7 +107,7 @@ function addSegment(frame) {
 	$("<div>").addClass("segment-container").data('frame', frame).data('segment', segment).append(
 	    $("<div>").addClass('segment-settings').append(
 		$("<input>").attr('type', 'button').val('X').click(function(){
-		    $(".segment-container:data(frame==" + frame + ",segment==" + segment + ")").remove();
+		    $(".segment-container:data(frame==" + frame + ",segment==" + segment + ")").empty().remove();
 		}),
 		$("<input>").addClass('segment-color').attr('type', 'color').val('#FFFFFF').data('frame', frame).data('segment', segment),
 		$("<input>").addClass('segment-brightness').attr('type', 'range').attr('min', 0).attr('max', 255).val(255).data('frame', frame).data('segment', segment),
@@ -133,7 +133,7 @@ function serializeAnimation() {
     });
 
     for (var frame = 1; frame <= frames; frame++) {
-	if (!$(".frame-container:data(frame==" + frame + ")"))
+	if (!$(".frame-container:data(frame==" + frame + ")").length)
 	    continue;
 
 	var frameObj = {
@@ -144,7 +144,7 @@ function serializeAnimation() {
 
 	var segments = $(".frame-segment-list:data(frame==" + frame + ")").data('segments');
 	for (var segment = 1; segment <= segments; segment++) {
-	    if (!$(".segment-container:data(frame==" + frame + ",segment==" + segment + ")"))
+	    if (!$(".segment-container:data(frame==" + frame + ",segment==" + segment + ")").length)
 		continue;
 
 	    var segObj = {
