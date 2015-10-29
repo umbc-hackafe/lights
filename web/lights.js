@@ -71,7 +71,7 @@ function addFrame() {
 		    $(".frame-container:data(frame==" + $(this).data('frame') + ")").empty().remove();
 		}),
 		$("<span>").addClass("frame-number").data("frame", frames+1).text("Frame #" + (frames+1)),
-		document.createTextNode("&bull;"),
+		document.createTextNode("--"),
 		$("<label>").append(
 		    document.createTextNode("Duration: "),
 		    $("<input>").addClass('frame-duration').attr("type", "number").val(1).attr("max", 3600).attr("min", .042).data("frame", frames+1),
