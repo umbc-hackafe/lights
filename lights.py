@@ -26,7 +26,7 @@ saved_animations = {}
 if not os.path.exists(".saved_animations"):
   os.makedirs(".saved_animations")
 
-for fname in (g for g in os.listdir(".saved_animations") if isfile(os.path.join(".saved_animations", g))):
+for fname in (g for g in os.listdir(".saved_animations") if os.path.isfile(os.path.join(".saved_animations", g))):
   with open(os.path.join(".saved_animations", fname)) as f:
     saved_animations[os.path.basename(fname).capitalize()] = deserialize(json.load(f))
 
