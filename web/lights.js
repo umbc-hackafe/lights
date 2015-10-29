@@ -205,7 +205,7 @@ $(function() {
     $("#add-frame").click(function(){addFrame();});
     $("#post-animation").click(function(){postAnimation();});
     $("#save-animation").click(function(){saveAnimation();});
-    $("#clear").click(function(){$.get("/clear")});
+    $("#clear-animations").click(function(){$.get("/clear")});
     $(".saved-animation").click(function() {
 	postSavedAnimation($(this).val());
     });
