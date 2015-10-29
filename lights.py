@@ -141,7 +141,7 @@ def get_animations():
 
 @app.route('/saved_animations')
 def get_saved_animations():
-  return flask.json.jsonify(list(saved_animations.keys()))
+  return flask.json.jsonify({"animations": list(saved_animations.keys())})
 
 @app.route('/')
 def index():
