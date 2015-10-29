@@ -166,12 +166,51 @@ function serializeAnimation() {
     return result;
 }
 
-function saveAnimation() {
+function postAnimation() {
     $.post("/add_animation", JSON.stringify(serializeAnimation()));
+}
+
+function saveAnimation() {
+    var name = prompt("Enter a name for this pattern");
+    $.post("/add_animation?" + $.param({"save": true, "name": name}),
+	   JSON.stringify(serializeAnimation()),
+	   function() {
+	       $("#animation-list").append(
+		   $("<li>").append(
+		       $("<input>").attr('type', 'button').addClass("saved-animation").val(name)
+		   )
+	       );
+	   }
+	  );
+}
+
+function postSavedAnimation(name) {
+    $.post("/add_saved_animation/" + encodeURIComponent(name));
+}
+
+function getSavedPosts() {
+    $("#animation-list").empty();
+    $.getJSON("/saved_animations", function(data) {
+	for (var k in data) {
+	    $("#animation-list").append(
+		$("<li>").append(
+		    $("<input>").attr('type', 'button').addClass("saved-animation").val(data[k])
+		)
+	    );
+	}
+    });
 }
 
 $(function() {
     $("#add-frame").click(function(){addFrame();});
+    $("#post-animation").click(function(){postAnimation();});
     $("#save-animation").click(function(){saveAnimation();});
     $("#clear").click(function(){$.get("/clear")});
+    $(".saved-animation").click(function() {
+	postSavedAnimation($(this).val());
+    });
+});
+
+$(function() {
+    getSavedPosts();
 });

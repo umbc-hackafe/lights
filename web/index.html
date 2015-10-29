@@ -12,21 +12,19 @@
   <body>
     <div id="page-wrapper">
       <div id="sidebar">
-	<h3 id="current-animation">Animation D</h3>
+	<h3 id="current-animation">Animation Editor</h3>
 	<form id="sidebar-form">
 	  <div id="sidebar-button-panel">
 	    <input type="button" value="Clear" id="clear-animations"/>
+	    <input type="button" value="Post Animation" id="post-animation"/>
 	    <input type="button" value="Save Animation" id="save-animation"/>
 	    <input type="button" value="Add Frame" id="add-frame"/>
 	  </div>
+	  <div>
+	    <ol id="animation-list">
+	    </ol>
+	  </div>
 	</form>
-	<div id="animation-list">
-	  <ol>
-	    <li>Animation A</li>
-	    <li>Animation B</li>
-	    <li>Animation C</li>
-	  </ol>
-	</div>
       </div>
       <div id="animation-editor" data-frames="0" data-animation="0";>
 	<form id="animation-editor-form" action="#" method="post">
