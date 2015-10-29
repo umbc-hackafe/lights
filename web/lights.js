@@ -177,7 +177,9 @@ function saveAnimation() {
 	   function() {
 	       $("#animation-list").append(
 		   $("<li>").append(
-		       $("<input>").attr('type', 'button').addClass("saved-animation").val(name)
+		       $("<input>").attr('type', 'button').addClass("saved-animation").val(name).click(function(){
+			postSavedAnimation($(this).val());
+		    })
 		   )
 	       );
 	   }
