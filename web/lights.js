@@ -211,6 +211,7 @@ $(function() {
     $("#post-animation").click(function(){postAnimation();});
     $("#save-animation").click(function(){saveAnimation();});
     $("#clear-animations").click(function(){$.get("/clear")});
+    $("#replace-animation").click(function(){$.get("?clear");postAnimation();});
 });
 
 $(function() {
