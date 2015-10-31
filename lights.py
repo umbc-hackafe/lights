@@ -101,6 +101,8 @@ def add_animation(index=None):
 def add_saved_animation(name, index=None):
   global animations
 
+  name = name.replace('_', ' ')
+
   if name not in saved_animations:
     raise ValueError("No animation named {} found".format(name))
 
