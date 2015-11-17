@@ -50,17 +50,20 @@ class FrameHolder:
     def __init__(self, frame=None):
         self.frame = frame
 
-def put_animation(rendered_animation, put, last_frame=FrameHolder(), cutoff=False):
+def put_animation(rendered_animation, put, last_frame=FrameHolder(), cutoff=False, keyframes=0):
+    i = 0
     end_time = rendered_animation["duration"] + time.time()
     while time.time() < end_time:
         for step in rendered_animation["steps"]:
             if step["type"] == "Animation":
-                put_animation(step, put, last_frame, cutoff)
+                put_animation(step, put, last_frame, cutoff, keyframes)
             elif step["type"] == "Frame":
-                if last_frame.frame:
+                if last_frame.frame and (not keyframes or i != keyframes):
                     diff_frame(last_frame.frame, step, put)
+                    i += 1
                 else:
                     put_frame(step, put)
+                    i = 0
                 last_frame.frame = step
                 time.sleep(step["duration"])
             if time.time() >= end_time and cutoff:

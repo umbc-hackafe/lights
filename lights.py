@@ -161,9 +161,9 @@ def bg_thread():
 
     if anims:
       for animation in anims:
-        put_animation(animation.render(), setLight)
+        put_animation(animation.render(), setLight, keyframes=120)
     else:
-      put_animation(DEFAULT_ANIMATION.render(), setLight)
+      put_animation(DEFAULT_ANIMATION.render(), setLight, keyframes=120)
 
 threading.Thread(target=bg_thread, daemon=True).start()
 
