@@ -167,4 +167,4 @@ def bg_thread():
 
 threading.Thread(target=bg_thread, daemon=True).start()
 
-app.run('0.0.0.0', port=80, debug=True)
+app.run('0.0.0.0', port=80)
