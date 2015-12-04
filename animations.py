@@ -13,7 +13,25 @@ def squash(segments):
     return result
 
 def merge_animations(*animations):
-    pass
+    assert all((len(a.steps) == len(animations[0].steps) for a in animations))
+    all_steps = []
+    for anim in animations:
+        frames = anim.steps
+
+        assert all(isinstance(f, type(frames[0])) for f in frames)
+
+        if isinstance(frames[0], Animation):
+            frames = merge_animations(*frames).steps
+
+        assert all(f.duration == frames[0].duration for f in frames)
+
+        for i, frame in enumerate(frames):
+            if len(all_steps) <= i:
+                all_steps.append(Frame(duration=frame.duration))
+
+            for seg in frame.segments:
+                all_steps[i].insert_segment(seg)
+    return Animation(all_steps)
 
 def deserialize(obj):
     if "__type__" not in obj:
@@ -178,6 +196,9 @@ class Animation:
         return {"type": "Animation",
                 "steps": [s.render() for s in self.steps],
                 "duration": self.duration}
+
+    def __add__(self, other):
+        return merge_animations(self, other)
 
     def serialize(self):
         return {"__type__": "Animation",
