@@ -97,6 +97,11 @@ def add_animation(index=None):
 
   return flask.json.jsonify({"status": "success"})
 
+@app.route('/put_saved_animation/<name>', methods=['POST'])
+def put_saved_animation(name):
+  clear()
+  return add_saved_animation(name)
+
 @app.route('/add_saved_animation/<name>', methods=['POST'])
 def add_saved_animation(name, index=None):
   global animations
