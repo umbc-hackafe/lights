@@ -17,7 +17,7 @@ for i in devices:
 print(serialDev)
 serialPort = serial.Serial(serialDev)
 
-DEFAULT_ANIMATION = Animation([Frame([Segment(color=0xFFFFFF), Segment(63, brightness=255)], duration=.005)])
+DEFAULT_ANIMATION = Animation([Frame([Segment(color=0x000000), Segment(63, brightness=0)], duration=.005)])
 
 lock = threading.Lock()
 animations = []
