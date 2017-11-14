@@ -206,12 +206,17 @@ function getSavedPosts() {
     });
 }
 
+function setLimit() {
+    $.post("/set_limit/chop/" + $("#brightness-limit").val());
+}
+
 $(function() {
     $("#add-frame").click(function(){addFrame();});
     $("#post-animation").click(function(){postAnimation();});
     $("#save-animation").click(function(){saveAnimation();});
     $("#clear-animations").click(function(){$.get("/clear")});
     $("#replace-animation").click(function(){$.get("/clear");postAnimation();});
+    $("#brightness-set").click(function(){setLimit();});
 });
 
 $(function() {

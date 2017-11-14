@@ -23,6 +23,12 @@ lock = threading.Lock()
 animations = []
 saved_animations = {}
 
+max_brightness = 255
+limit_mode = 'chop'
+
+def bright_limit(val):
+  return min(max_brightness, val) if limit_mode == 'chop' else int((val / 255) * max_brightness)
+
 if not os.path.exists(".saved_animations"):
   os.makedirs(".saved_animations")
 
@@ -31,8 +37,8 @@ for fname in (g for g in os.listdir(".saved_animations") if os.path.isfile(os.pa
     saved_animations[os.path.splitext(os.path.basename(fname))[0].capitalize()] = deserialize(json.load(f))
 
 def setLight(id, brightness, r, g, b):
-  #print(bytes([255, 255, id, brightness, r, g, b]))
-  serialPort.write(bytes([255, 255, id, brightness, r, g, b]))
+  #print(bytes([255, 255, id, bright_limit(brightness), r, g, b]))
+  serialPort.write(bytes([255, 255, id, bright_limit(brightness), r, g, b]))
 
 def fadeInOut(fadeTime=1):
   for i in range(255):
@@ -94,6 +100,14 @@ def add_animation(index=None):
       animations.append(anim)
     else:
       animations = animations[:index] + [anim] + animations[index:]
+
+  return flask.json.jsonify({"status": "success"})
+
+@app.route('/set_limit/<mode>/<int:limit>', methods=['POST'])
+def set_limit(mode, limit):
+  global limit_mode, max_brightness
+  max_brightness = max(0, min(255, limit))
+  limit_mode = mode
 
   return flask.json.jsonify({"status": "success"})
 

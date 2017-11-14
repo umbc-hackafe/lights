@@ -15,11 +15,15 @@
 	<h3 id="current-animation">Animation Editor</h3>
 	<form id="sidebar-form">
 	  <div id="sidebar-button-panel">
+        <input type="number" min="0" max="255" value="255" id="brightness-limit"/>
+        <input type="button" value="Set Brightness Limit" id="brightness-set"/>
+        <hr/>
 	    <input type="button" value="Clear" id="clear-animations"/>
 	    <input type="button" value="Replace Animation" id="replace-animation"/>
 	    <input type="button" value="Post Animation" id="post-animation"/>
 	    <input type="button" value="Save Animation" id="save-animation"/>
-	    <input type="button" value="Add Frame" id="add-frame"/>
+	    <input type="button" value="Add Frame" id="add-frame"/><br/>
+
 	  </div>
 	  <div>
 	    <ol id="animation-list">
